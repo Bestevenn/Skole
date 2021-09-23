@@ -6,26 +6,25 @@ from datetime import date
 from sys import platform
 
 
-# skjekker om pyperclip er installert
 
 
 def mellomrom():
     print("")
 
+# skjekker om pyperclip er installert
 try:
-    import pyperclip
+    import pyperclip 
     Fortsett = False
 except:
     mellomrom()
     print("pyperclip er ikke installert")
     print("Installer med pip3/pip install pyperclip https://pypi.org/project/pyperclip/")
+    print("Du vil ikke kunne kopierer til utklippsavtelen dersom detter ikke er instalert")
     time.sleep(2)
-    
-
 
 Fortsett = True # deffinerer Fortsett, gjør det mulig for oss å bryte løkken etterpå
 Filnavn_og_plasering = print()
-# lager en funksjon som vi kan kalle på når som helst
+# lager en funksjon som vi kan kalle på når som helst i programmet 
 # den skjekker hvilket oppreastivsystem du er på og rensker terminalen med riktig komanndo
 def skjekke_os():
     if platform == "darwin":
@@ -42,7 +41,7 @@ Alle_svar = []  #lager en tom liste som vi kan legge svarene inni
 while Fortsett:
     # Finner ut hvilken regneopperasjon du skal bruke
     mellomrom()
-    print("Hvilken regneopperasjon vil du bruke +/-/*/(/) ")
+    print("Hvilken regneopperasjon vil du bruke +/-/*/")
     print("Skriv s for å avslutte og q for å stopp med en gang")
     mellomrom()
     regneopprasjon = input("Regneopprasjon: ")
@@ -109,6 +108,8 @@ while Fortsett:
         else:
                 skjekke_os()                 
         # gjør det mulig å renske terminalen når som helst
+    elif regneopprasjon == "/":
+        print("kommer snart")
     elif regneopprasjon == "clear":
         skjekke_os()
         # gjør det mulig å stoppe loopen
@@ -139,6 +140,12 @@ while Fortsett:
     if print_alle_svar == "y":
         mellomrom()
         print("Dine svar:", Alle_svar)
+        mellomrom()
+        kopiere_alle_svar = input("vil du kopiere alle svarene dine til utklippsavtalen y/n: ")
+        if kopiere_alle_svar == "y":
+            for n in Alle_svar:
+                n = n
+        pyperclip.copy(n)
         mellomrom()
         Lagre = input("vil du lagre svarerene dine i en fil y/n: ")
         if Lagre == "y":
