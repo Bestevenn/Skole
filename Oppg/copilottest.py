@@ -17,7 +17,6 @@ print("test3")
 
 print("test3")
 
+ 
 
-testesd g 
-
-g fdft
+print("ndf")
