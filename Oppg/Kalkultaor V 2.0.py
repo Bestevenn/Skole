@@ -42,8 +42,9 @@ Alle_svar = []  #lager en tom liste som vi kan legge svarene inni
 while Fortsett:
     # Finner ut hvilken regneopperasjon du skal bruke
     mellomrom()
-    print("Hvilken regneopperasjon vil du bruke +/-/* ")
+    print("Hvilken regneopperasjon vil du bruke +/-/*/(/) ")
     print("Skriv s for å avslutte og q for å stopp med en gang")
+    mellomrom()
     regneopprasjon = input("Regneopprasjon: ")
     
     # se "*" for full forklaring 
@@ -68,7 +69,6 @@ while Fortsett:
     elif regneopprasjon == "q":
         mellomrom()
         exit()
-        
     # se "*" for full forklaring 
     elif regneopprasjon == "-":
         hvormange_b = int(input("hvor mange tall?: "))
@@ -161,13 +161,25 @@ while Fortsett:
                     print("vennligst prøv på nytt med en annen mappe")
                     mellomrom()
         Fortsett = False         
+    elif print_alle_svar == "n":
+        Fortsett = False
     else:
-        print()
+        mellomrom()         
+        print("Du skrev noe feil... prøv igjen")
+        mellomrom()
 
 skjekke_os()
 mellomrom()
-print("svaret ble skrevet til", Filnavn_og_plasering)
-mellomrom()
-print("parent is shutting down, bye...")
-mellomrom()   
+if print_alle_svar == "y":
+    print("svaret ble skrevet til", Filnavn_og_plasering)
+    mellomrom()
+    print("parent is shutting down, bye...")
+    mellomrom()
+else:
+    print("parent is shutting down, bye...")
+    mellomrom()
+
+
+
+
 

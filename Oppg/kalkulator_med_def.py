@@ -58,9 +58,7 @@ while Fortsett:
         Fortsett = False
     else:
         print("du skrev noe feil")
-
-
-
+    
 skjekke_os()
 print("")
 printe_svar = input("Vil du printe alle svar y/n ?: ")
