@@ -23,7 +23,6 @@ except:
     
 
 
-Dato = date.today()
 Fortsett = True # deffinerer Fortsett, gjør det mulig for oss å bryte løkken etterpå
 Filnavn_og_plasering = print()
 # lager en funksjon som vi kan kalle på når som helst
@@ -39,13 +38,14 @@ def skjekke_os():
         print()
 
 Alle_svar = []  #lager en tom liste som vi kan legge svarene inni
-
-
     
 while Fortsett:
     # Finner ut hvilken regneopperasjon du skal bruke
-    regneopprasjon = input("Hvilken regneopperasjon vil du bruke +/-/* og s for stopp og q for å stoppe med en gang: ")
-
+    mellomrom()
+    print("Hvilken regneopperasjon vil du bruke +/-/* ")
+    print("Skriv s for å avslutte og q for å stopp med en gang")
+    regneopprasjon = input("Regneopprasjon: ")
+    
     # se "*" for full forklaring 
     if regneopprasjon == "+":
         hvormange_a = int(input("hvor mange tall?: "))
@@ -130,8 +130,11 @@ while Fortsett:
         skjekke_os()
 
 Fortsett = True
+Dato = date.today()
 
 while Fortsett:
+    mellomrom()
+    skjekke_os()
     print_alle_svar = input("vil du printe alle svar y/n: ")
     if print_alle_svar == "y":
         mellomrom()
