@@ -1,12 +1,6 @@
+import math
 
-
-
-
-
-
-
-
-limit=int(input("Enter upper limit:"))
+limit=int(input("Støreste tall :"))
 c=0
 m=2
 while(c<limit):

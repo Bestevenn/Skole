@@ -5,6 +5,7 @@ from functools import reduce
 from datetime import date
 from sys import platform
 
+
 # skjekker om pyperclip er installert
 try:
     import pyperclip
@@ -116,28 +117,37 @@ while Fortsett:
         time.sleep(0.5)
         skjekke_os()
 
-    
+Fortsett = True
 
-
-print_alle_svar = input("vil du printe alle svar y/n: ")
-if print_alle_svar == "y":
-    print("")
-    print("Dine svar:", Alle_svar)
-    print("")
-    Lagre = input("vil du lagre svarerene dine i en fil y/n: ")
-    if Lagre == "y":
+while Fortsett:
+    print_alle_svar = input("vil du printe alle svar y/n: ")
+    if print_alle_svar == "y":
         print("")
-        print("NB! python må ha tilgang til mappesystmet og filtype må være med eks: .txt ")
+        print("Dine svar:", Alle_svar)
         print("")
-        navn_fil = str(input("hva skal filen hete?: "))
-        svar_lagre = str(input("Hvor vil du lagre filen?: "))
-        print("")
-        Filnavn_og_plasering = svar_lagre+navn_fil
-        print("")
-        with open(Filnavn_og_plasering, "w+") as f:
-            print(f"Dine svar fra {Dato} = ",Alle_svar, file=f)
-else:
-    print()
+        Lagre = input("vil du lagre svarerene dine i en fil y/n: ")
+        if Lagre == "y":
+            print("")
+            print("NB! python må ha tilgang til mappesystmet og filtype må være med eks: .txt ")
+            print("")
+            while Fortsett:
+                navn_fil = str(input("hva skal filen hete?: "))
+                svar_lagre = str(input("Hvor vil du lagre filen?: "))
+                filtilgang = os.access(svar_lagre, os.X_OK | os.W_OK)
+                if filtilgang == True:
+                    Filnavn_og_plasering = svar_lagre+navn_fil
+                    print("")
+                    with open(Filnavn_og_plasering, "w+") as f:
+                        print(f"Dine svar fra {Dato} = ",Alle_svar, file=f)
+                    Fortsett = False
+                elif filtilgang == False:
+                    print("")
+                    print("Du har ikke tilgang til mappen med python")
+                    print("vennligst prøv på nytt med en annen mappe")
+                    print("")
+        Fortsett = False         
+    else:
+        print()
 
 
 

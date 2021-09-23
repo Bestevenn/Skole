@@ -1,7 +1,7 @@
-import random
+import os
 
-sum = 0
-for n in range(100):
-    t = random.uniform(70,80)
-    print(t)
+svar_lagre = "C:\Windows\assembly"
+t = os.access(svar_lagre, os.X_OK | os.W_OK) 
 
+if t == False:
+    print("du har ikke tilgang")
