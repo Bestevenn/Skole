@@ -1,1 +1,5 @@
-# printer hello word
+
+
+print("hello word")
+
+
