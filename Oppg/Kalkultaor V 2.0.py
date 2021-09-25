@@ -141,12 +141,6 @@ while Fortsett:
         mellomrom()
         print("Dine svar:", Alle_svar)
         mellomrom()
-        kopiere_alle_svar = input("vil du kopiere alle svarene dine til utklippsavtalen y/n: ")
-        if kopiere_alle_svar == "y":
-            for n in Alle_svar:
-                n = n
-        pyperclip.copy(n)
-        mellomrom()
         Lagre = input("vil du lagre svarerene dine i en fil y/n: ")
         if Lagre == "y":
             mellomrom()
