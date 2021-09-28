@@ -6,7 +6,7 @@ import os
 
 pygame.init()
 
-HIMMELBLA = (135, 206, 235)
+Grå = (30, 30, 30)
 GRØNN = (124,252,0)
 SOL = (255,255,0)
 brun = (139,69,19)
@@ -29,7 +29,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
     clock.tick(10)
-    vindu.fill(HIMMELBLA)
+    vindu.fill(Grå)
     pygame.draw.circle(vindu, SOL, (x,y), 10, width=0)
     x += dx
     y += dy
