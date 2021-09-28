@@ -11,4 +11,6 @@ while fortsett:
         fortsett = False
     elif ina == "fortsett":
         print("heiopådeg")
-        
+    
+
+

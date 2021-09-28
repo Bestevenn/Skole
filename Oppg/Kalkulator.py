@@ -74,3 +74,5 @@ time.sleep(1)
 Ferdigprogram = str("parent is shutting down, bye...") 
 print(Ferdigprogram)
 time.sleep(1)
+
+
