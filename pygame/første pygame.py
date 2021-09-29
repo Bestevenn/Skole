@@ -18,9 +18,8 @@ pygame.display.update()
 
 x = 200
 y = 200
-dx = 1
 dy = 1
-timer = 100
+timer = 10
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -28,8 +27,11 @@ while True:
         clock.tick(timer)
         vindu.fill(HIMMELBLA)
         pygame.draw.circle(vindu, SUN, (x,y), 50, width=0)
-        #x += dx
-        y += dy
+        while y < 400:
+            y += dy
+            print(y)
+            if y == 400:
+                break
         pygame.display.update()
         
 
