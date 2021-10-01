@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 
 
 
-x = 0
+x = 150
 y = 0
 dx = 15
 dy = 15
@@ -31,14 +31,17 @@ while True:
     clock.tick(10)
     vindu.fill(Grå)
     pygame.draw.circle(vindu, SOL, (x,y), 10, width=0)
-    x += dx
+    Fortsett = True
+    while Fortsett:
+        if x < 300 and y < 150:
+            x += dx
+            y += dy
+        elif x == 300 and y == 150:
+           Fortsett = False 
+    if x == 300 and y == 150:
+    x -= dx
     y += dy
+    print(x,y)
 
 
-    print(x, y)
-    if x == 300 and y == 300:
-        x -= dx
-        y -= dy
-    pygame.draw.circle(vindu, SOL, (x,y), 10, width=0)
     pygame.display.update()
-

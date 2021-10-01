@@ -9,7 +9,7 @@ SUN = (255,255,0)
 brun = (139,69,19)
 white =(255, 255, 255) 
 clock = pygame.time.Clock()
-vindu = pygame.display.set_mode((300, 400))
+vindu = pygame.display.set_mode((400, 400))
 
 
 
@@ -27,7 +27,7 @@ while True:
 
         vindu.fill(HIMMELBLA)
 
-        pygame.draw.circle(vindu, SUN, (x,y), 5, width=0)
+        pygame.draw.circle(vindu, SUN, (x,y), 5)
         y += dy
         
         clock.tick(10)
