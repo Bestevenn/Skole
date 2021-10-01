@@ -30,7 +30,7 @@ while True:
         pygame.draw.circle(vindu, SUN, (x,y), 5)
         y += dy
         
-        clock.tick(10)
+        clock.tick(120)
         pygame.display.update()
 
 

@@ -13,7 +13,7 @@ window = pygame.display.set_mode((window_w, window_h))
 pygame.display.set_caption("Game: ")
 clock = pygame.time.Clock()
 
-dvd = pygame.image.load(r"/Users/martinknutsen/Documents/GitHub/Skole/BIlder/51-518072_hd-dvd-dvd-video-logo-dvd-video-logo.jpeg")
+
 
 def game_loop():
 
@@ -26,12 +26,15 @@ def game_loop():
 
     running = True
 
+    radius = 32
+
     while running:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+        
 
         pos_x += velocity[0]
         pos_y += velocity[1]
@@ -44,9 +47,11 @@ def game_loop():
 
         # DRAW
         window.fill(white)
-        pygame.draw.circle(window, black, (pos_x, pos_y), 8, width=0)
+        pygame.draw.circle(window, black, (pos_x, pos_y), radius, width=0)
         pygame.display.update()
         clock.tick(FPS)
+        print(pos_x,pos_y, "radius: ", radius)
 
 
 game_loop()
+
