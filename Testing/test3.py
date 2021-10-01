@@ -1,12 +1,11 @@
 
-# tell opp fra 100 og ned igjen
 
-x = 200
 
-for n in range(x+1):
-        print(n)
 
-if n == x:
-    for z in range(x,-1,-1):
-        print(z)
-   
+sumK = 100
+antall_tall = 100
+
+for masse in range(1,antall_tall):
+    sum1 = sumK/masse
+    round(sum1, 3)
+    print(round(sum1),5)
