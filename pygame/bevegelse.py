@@ -16,7 +16,7 @@ white =(255, 255, 255)
 clock = pygame.time.Clock()
 
 
-FPS = 4
+FPS = 120
 
 x = 150
 y = 0
@@ -31,15 +31,13 @@ while True:
     clock.tick(FPS)
     vindu.fill(Grå)
     pygame.draw.circle(vindu, SOL, (x,y), 10, width=0)
-    Fortsett = True
-    while Fortsett:
-        y += dy
-        x += dx
-        if x == 1000 and y == 1000:
-            Fortsett = False
-    y -= dy
-    x -= dx
-        
 
+    y += dy
+    x += dx
+    if x == 1000 and y == 1000:
+        y = 0
+        x = 0
 
+    print(x,y)
+    
     pygame.display.update()

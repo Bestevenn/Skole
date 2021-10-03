@@ -1,11 +1,51 @@
+import pygame
+from pygame.draw import circle
+import random
 
 
 
+pygame.init
 
-sumK = 100
-antall_tall = 100
+x_vin, y_vin = (1200), (800)
+backgrunn = (25,25,25)
+hvit = (255,255,255)
+vindu = pygame.display.set_mode((x_vin, y_vin))
+FPS = 200
+klokke = pygame.time.Clock()
 
-for masse in range(1,antall_tall):
-    sum1 = sumK/masse
-    round(sum1, 3)
-    print(round(sum1),5)
+radius = 25
+x_kod_ball = 0
+y_kod_ball = 0 
+dx = 1
+dy = 1
+dy_minus = -(dy)
+dy_pluss = +(dy)
+
+
+avstand =  radius + 10  
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+    klokke.tick(FPS)
+
+    vindu.fill(hvit) 
+    pygame.draw.circle(vindu, backgrunn, (x_kod_ball,y_kod_ball), radius, width=0)
+    x_kod_ball = x_vin/2
+    y_kod_ball += dy
+    radius += 1    
+    if y_kod_ball > 800 - radius:
+        dy += dy_minus
+    elif y_kod_ball < 0 + radius:
+        dy += dy_pluss
+    if radius > 1000:
+        radius = 1
+        
+
+    print(radius)
+
+        
+            
+    
+    pygame.display.update()
+            
