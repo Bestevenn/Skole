@@ -21,16 +21,19 @@ dy = 1
 dy_minus = -(dy)
 dy_pluss = +(dy)
 
-
 avstand =  radius + 10  
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
     klokke.tick(FPS)
+    a = random.randint(1,255)
+    b = random.randint(1,255)
+    c = random.randint(1,255)
 
+    regnbue = (a,b,c)
     vindu.fill(hvit) 
-    pygame.draw.circle(vindu, backgrunn, (x_kod_ball,y_kod_ball), radius, width=0)
+    pygame.draw.circle(vindu, regnbue, (x_kod_ball,y_kod_ball), radius, width=0)
     x_kod_ball = x_vin/2
     y_kod_ball += dy
     radius += 1    
@@ -40,6 +43,7 @@ while True:
         dy += dy_pluss
     if radius > 1000:
         radius = 1
+        
         
 
     print(radius)
