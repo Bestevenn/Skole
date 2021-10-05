@@ -4,7 +4,7 @@ def f(x):
 delta_x = 0.1
 
 
-for n in range(15):
+for n in range(10):
     print((3+delta_x), "   ", f(3+delta_x))
     delta_x = delta_x * 0.1 
 
