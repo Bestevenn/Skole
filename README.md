@@ -17,6 +17,3 @@ Here are some ideas to get you started:
 
 
 
-Norsk
-
-hei jeg er norsk
