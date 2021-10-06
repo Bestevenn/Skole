@@ -5,7 +5,7 @@ delta_x = 0.1
 
 
 for n in range(10):
-    print((3+delta_x), "   ", f(3+delta_x))
+    print((2+delta_x), "   ", f(2+delta_x))
     delta_x = delta_x * 0.1 
 
 
