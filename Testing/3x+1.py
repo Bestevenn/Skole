@@ -1,19 +1,19 @@
 import math
 
 
-#deffinerer en funkjson som vi kan kalle når som helst i progammret
+# deffinerer en funkjson som vi kan kalle når som helst i progammret
 def algoritme(tall):
-    n = float(tall)
-    tall = n
-    z = 0
+    n = float(tall) # setter n som det tallet du skal utføre algoritmen i 
+    tall = n # setter tall til n slik at vi kan printe det første tallet senere
+    z = 0 # setter z til 0. dette er basisen for å få antall forsøk og linjer med
     print("")
     print("Tall:",n)
     print("")
 
-    while n > 1:
-            if n%2 == 0:
-                n =  n/2
-                z += 1
+    while n > 1: # loopen skal gå så lenge n er større en 0
+            if n%2 == 0: # utfører den regneopprasjonen dersom restten av n/2 er lik 0
+                n =  n/2   # setter verdien til n = n delt på 2
+                z += 1 
                 print(f"Nr.{z}     {n} ")
             elif n%2 == 1:
                 n = 3*n +1
@@ -24,4 +24,4 @@ def algoritme(tall):
     print("Det tok", z-1, "forsøk og komme til 0 med tallet",tall )
     print("")
 
-algoritme(50)
+algoritme(54656565)
