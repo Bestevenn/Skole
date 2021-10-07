@@ -21,5 +21,8 @@ print(L_x,L_y)
 
 
 plot(L_x, L_y)
+xlabel("x-akse")
+ylabel("y-akse")
+title()
 grid()
 show()
