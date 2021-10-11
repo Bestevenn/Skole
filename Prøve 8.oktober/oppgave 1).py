@@ -1,5 +1,5 @@
- 
-#oppgave 1
+
+# oppgave 1
 
 a0 = int(input("startverdi: "))
 d = int(input("deifferantse: "))
@@ -15,16 +15,16 @@ while fortsett:
 
 L1 = []
 L2 = []
-for n in range(a0,a0+30,d):
+for n in range(a0, a0+30, d):
     L1.append(n)
-    #oppgave d
+    # oppgave d
     if n % 2 == 0:
         print()
-    elif n%2 == 1: # "%" gir oss tilbake hvor mye som er i rest
+    elif n % 2 == 1:  # "%" gir oss tilbake hvor mye som er i rest
         L2.append(n)
 
-print("Oppgave b: )",L1)
-print("Oppgave c: )",L2)
+print("Oppgave b: )", L1)
+print("Oppgave c: )", L2)
 print("")
-print("summen av tallene i oppgave b: ",sum(L1))
-print("summen av tallene i oppgave c: ",sum(L2))
+print("summen av tallene i oppgave b: ", sum(L1))
+print("summen av tallene i oppgave c: ", sum(L2))
