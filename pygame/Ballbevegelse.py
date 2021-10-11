@@ -14,7 +14,6 @@ pygame.display.set_caption("Game: ")
 clock = pygame.time.Clock()
 
 
-
 def game_loop():
 
     block_size = 20
@@ -34,7 +33,6 @@ def game_loop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-        
 
         pos_x += velocity[0]
         pos_y += velocity[1]
@@ -50,8 +48,7 @@ def game_loop():
         pygame.draw.circle(window, black, (pos_x, pos_y), radius, width=0)
         pygame.display.update()
         clock.tick(FPS)
-        print(pos_x,pos_y, "radius: ", radius)
+        print(pos_x, pos_y, "radius: ", radius)
 
 
 game_loop()
-
