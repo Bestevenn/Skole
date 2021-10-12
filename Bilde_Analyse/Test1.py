@@ -1,7 +1,12 @@
 import pytesseract
 from PIL import Image
 import os
-img = Image.open(
-    "Bilde_Analyse/Skjermbilde 2021-10-12 kl. 00.53.47.png")
-text = pytesseract.image_to_boxes(img)
-print(text)
+
+alle_områder = []
+
+for n in range(1, 4+1):
+    img = Image.open(
+        f"/Users/martinknutsen/Documents/GitHub/Skole/Bilde_Analyse/Bilder/{n}.png")
+    text = pytesseract.image_to_string(img)
+    os.system(
+        f"mkdir /Users/martinknutsen/Documents/GitHub/Skole/Bilde_Analyse/Bilder/Testmappe/{text}")
