@@ -22,7 +22,7 @@ def algoritme(tall):
     print("Det tok", z-1, "forsøk og komme til 1 med tallet",tall )
     print("")
         
-k = random.randint(1,10)        
-algoritme(k)
-
+k = random.randint(1,10)
+for n in range(100):   
+    algoritme(n)
 
