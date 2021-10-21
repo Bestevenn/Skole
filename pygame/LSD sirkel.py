@@ -1,5 +1,5 @@
 import pygame
-from pygame.draw import circle
+
 import random
 
 
@@ -48,8 +48,5 @@ while True:
 
     print(radius)
 
-        
-            
-    
     pygame.display.update()
             
