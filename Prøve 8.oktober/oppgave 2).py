@@ -13,7 +13,7 @@ for n in range(antall_kast):
         t1 = input("skriv kast for å kaste en gang til: ")
     if t1 == "kast":
         terning = random.randint(1, 6)
-        print("du kan flytte", terning, "fremover")
+        print("Du kan flytte", terning, "fremover")
         exit()
 else:
     print("du må vente til neste runde")
