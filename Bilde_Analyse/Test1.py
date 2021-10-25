@@ -4,7 +4,7 @@ import os
 
 alle_områder = []
 
-for n in range(1, 4+1):
+for n in range(2, 8+1):
     img = Image.open(
         f"/Users/martinknutsen/Documents/GitHub/Skole/Bilde_Analyse/Bilder/{n}.png")
     text = pytesseract.image_to_string(img)
