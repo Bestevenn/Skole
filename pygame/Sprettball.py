@@ -1,3 +1,4 @@
 import pygame
 
-pygame_start =
+pygame.init
+
