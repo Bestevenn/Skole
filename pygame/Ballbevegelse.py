@@ -7,7 +7,7 @@ window_h = 600
 white = (255, 255, 255)
 black = (0, 0, 0)
 
-FPS = 120
+FPS = 240
 
 window = pygame.display.set_mode((window_w, window_h))
 pygame.display.set_caption("Game: ")
