@@ -32,8 +32,7 @@ while True:
 
     regnbue = (a, b, c)
     vindu.fill(hvit)
-    pygame.draw.circle(vindu, regnbue, (x_kod_ball,
-                       y_kod_ball), radius, width=0)
+    pygame.draw.circle(vindu, regnbue, (x_kod_ball, y_kod_ball), radius, width=0)
     x_kod_ball = x_vin/2
     y_kod_ball += dy
     radius += 1
