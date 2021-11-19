@@ -66,6 +66,6 @@ while True:
         if event.key == pygame.K_LEFT:
             rød = (randint(0, 255), randint(0, 255), randint(0, 255))
         if event.key == pygame.K_ESCAPE:
-            pygame.quit
+            pygame.quit()
     print(dx, dy, x_pos, y_pos)
     pygame.display.update()
