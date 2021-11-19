@@ -21,10 +21,15 @@ dx = 5
 dy = 5
 dx_aks = 1.0
 R = 2.5
-grader = 0
+grader = 90
 
 
-Bilde = pygame.transform.rotate(Bilde, grader)
+def tegnfigur(vindu1, fig, punkt, vinkel):
+    rotertbilde = pygame.transform.rotate(fig, vinkel)
+    x = punkt[0]
+    y = punkt[1]
+    vindu1.blit(rotertbilde, rotertbilde.get_rect(
+        center=fig.get_rect(center=(x, y)).center).topleft)
 
 
 while True:
@@ -34,20 +39,24 @@ while True:
     vindu.fill(backgrunn)
 
     #pygame.draw.circle(vindu, farge_ball, (x_kod_ball, y_kod_ball), radius, width=0)
-    vindu.blit(Bilde, (x_kod_ball, y_kod_ball))
-
+    tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-            x_kod_ball -= dx
+            grader += 5
         if event.key == pygame.K_RIGHT:
-            x_kod_ball += dx
-            grader = 90
+            grader -= 5
         if event.key == pygame.K_UP:
-            y_kod_ball -= dy
+            x_kod_ball += dx
+            grader
+            if grader > 75 or grader < 105:
+                x_kod_ball -= dx
+
         if event.key == pygame.K_DOWN:
             y_kod_ball += dy
+
         if event.key == pygame.K_ESCAPE:
             pygame.quit()
+
         if x_kod_ball > x_vin + radius:
             x_kod_ball = 0 - radius
         if x_kod_ball < 0 - radius:
@@ -56,5 +65,6 @@ while True:
             y_kod_ball = 0 - radius
         if y_kod_ball < 0 - radius:
             y_kod_ball = 800 + radius
+
     pygame.display.flip()
     pygame.display.update()
