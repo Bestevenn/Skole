@@ -1,3 +1,4 @@
+import math
 import pygame
 from random import randint
 pygame.init
@@ -13,15 +14,11 @@ Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
 
 x_kod_ball = 400
 y_kod_ball = 400
-x_kod_ball2 = 100
-y_kod_ball2 = 100
 radius = 50
-radius_ball2 = 50
-dx = 5
-dy = 5
 dx_aks = 1.0
 R = 2.5
-grader = 90
+grader = 0
+fart = 1
 
 
 def tegnfigur(vindu1, fig, punkt, vinkel):
@@ -39,32 +36,31 @@ while True:
     vindu.fill(backgrunn)
 
     #pygame.draw.circle(vindu, farge_ball, (x_kod_ball, y_kod_ball), radius, width=0)
+    key = pygame.key.get_pressed()
+    # Test for pil ned
+    if key[pygame.K_LEFT]:
+        grader += 7
+        # Test for pil opp
+    elif key[pygame.K_RIGHT]:
+        grader -= 7
+    elif key[pygame.K_ESCAPE]:
+        pygame.quit()
+    elif key[pygame.K_UP]:
+        fart += 0.1
+    elif key[pygame.K_DOWN]:
+        fart -= 0.1
+
+    x_kod_ball += fart*math.sin(grader*math.pi/180)
+    y_kod_ball += fart*math.cos(grader*math.pi/180)
+
+    if x_kod_ball > x_vin + radius:
+        x_kod_ball = 0 - radius
+    if x_kod_ball < 0 - radius:
+        x_kod_ball = 800 + radius
+    if y_kod_ball > y_vin + radius:
+        y_kod_ball = 0 - radius
+    if y_kod_ball < 0 - radius:
+        y_kod_ball = 800 + radius
     tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_LEFT:
-            grader += 5
-        if event.key == pygame.K_RIGHT:
-            grader -= 5
-        if event.key == pygame.K_UP:
-            x_kod_ball += dx
-            grader
-            if grader > 75 or grader < 105:
-                x_kod_ball -= dx
-
-        if event.key == pygame.K_DOWN:
-            y_kod_ball += dy
-
-        if event.key == pygame.K_ESCAPE:
-            pygame.quit()
-
-        if x_kod_ball > x_vin + radius:
-            x_kod_ball = 0 - radius
-        if x_kod_ball < 0 - radius:
-            x_kod_ball = 800 + radius
-        if y_kod_ball > y_vin + radius:
-            y_kod_ball = 0 - radius
-        if y_kod_ball < 0 - radius:
-            y_kod_ball = 800 + radius
 
     pygame.display.flip()
-    pygame.display.update()
