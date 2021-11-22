@@ -46,8 +46,8 @@ while True:
     x_kod_ball += -dx
     x_kod_ball2 += dx
     if x_kod_ball2 > x_kod_ball - radius*2:
-        x_kod_ball += dx
-        x_kod_ball2 += -dx
+        x_kod_ball = dx
+        x_kod_ball2 = -dx
     
     print("xkod1 = ", x_kod_ball, "xkod2 =", x_kod_ball2)
     print(dx)
