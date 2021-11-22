@@ -3,7 +3,7 @@ import pygame
 from random import randint
 pygame.init
 
-x_vin, y_vin = (800), (800)
+x_vin, y_vin = (1280), (720)
 backgrunn = (30, 30, 30)
 farge_ball = (138, 180, 248)
 fps = 120
@@ -11,14 +11,20 @@ vindu = pygame.display.set_mode((x_vin, y_vin))
 clock = pygame.time.Clock()
 
 Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
+bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
 
-x_kod_ball = 400
+# fargegjennkjenning
+
+midtfarge = (0, 0, 0, 255)
+
+
+x_kod_ball = 110
 y_kod_ball = 400
 radius = 50
 dx_aks = 1.0
 R = 2.5
-grader = 0
-fart = 1
+grader = 180
+fart = 0.001
 
 
 def tegnfigur(vindu1, fig, punkt, vinkel):
@@ -35,14 +41,16 @@ while True:
             pygame.quit()
     vindu.fill(backgrunn)
 
+    vindu.blit(bane,(0,0))
+
     #pygame.draw.circle(vindu, farge_ball, (x_kod_ball, y_kod_ball), radius, width=0)
     key = pygame.key.get_pressed()
     # Test for pil ned
     if key[pygame.K_LEFT]:
-        grader += 7
+        grader += 3
         # Test for pil opp
     elif key[pygame.K_RIGHT]:
-        grader -= 7
+        grader -= 3
     elif key[pygame.K_ESCAPE]:
         pygame.quit()
     elif key[pygame.K_UP]:
@@ -56,11 +64,20 @@ while True:
     if x_kod_ball > x_vin + radius:
         x_kod_ball = 0 - radius
     if x_kod_ball < 0 - radius:
-        x_kod_ball = 800 + radius
+        x_kod_ball = 1280 + radius
     if y_kod_ball > y_vin + radius:
         y_kod_ball = 0 - radius
     if y_kod_ball < 0 - radius:
-        y_kod_ball = 800 + radius
-    tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
+        y_kod_ball = 720 + radius
+    
 
+    # fargegjennkjennig
+    farge = bane.get_at((640,360))
+    
+    if 
+
+
+    tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
     pygame.display.flip()
+    clock.tick(fps)
+
