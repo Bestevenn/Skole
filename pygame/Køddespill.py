@@ -20,8 +20,11 @@ Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
 bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
 
 
-x_kod_ball = 110
-y_kod_ball = 400
+start_x = 110 
+start_y = 400
+
+x_kod_ball = start_x
+y_kod_ball = start_y
 radius = 50
 dx_aks = 1.0
 R = 2.5
@@ -84,10 +87,14 @@ while True:
     farge = bane.get_at((400,400))
     farge_bil = bane.get_at((int(x_kod_ball), int(y_kod_ball)))
     
-
     if farge_bil == (255,38,0):
         antall_ganger += 1
+        if antall_ganger >= 3:
+            x_kod_ball = start_x
+            y_kod_ball = start_y
+            fart = 0.001
         print("ani")
+        print(antall_ganger)
     else:
         print("tikk")
 
