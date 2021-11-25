@@ -1,8 +1,9 @@
 import math
 import pygame
 from random import randint
+from time import sleep
 pygame.init
-pygame.font.init()
+
 
 pygame.display.set_caption("Bilspill")
 x_vin, y_vin = (1280), (720)
@@ -33,9 +34,8 @@ fart = 0.001
 
 
 # teller og tekst
-antall_ganger = 0
-myfont = pygame.font.SysFont('Comic Sans MS', 30)
-scoretext = myfont.render("Score = "+str(antall_ganger), 1, blue)
+
+treff = 0
 
 def tegnfigur(vindu1, fig, punkt, vinkel):
     rotertbilde = pygame.transform.rotate(fig, vinkel)
@@ -44,7 +44,7 @@ def tegnfigur(vindu1, fig, punkt, vinkel):
     vindu1.blit(rotertbilde, rotertbilde.get_rect(
         center=fig.get_rect(center=(x, y)).center).topleft)
 
-
+test = 50
 
 while True:
     for event in pygame.event.get():
@@ -53,7 +53,6 @@ while True:
     vindu.fill(backgrunn)
 
     vindu.blit(bane,(0,0))
-    vindu.blit(scoretext,(1000,100))
     #pygame.draw.circle(vindu, farge_ball, (x_kod_ball, y_kod_ball), radius, width=0)
     key = pygame.key.get_pressed()
     # Test for pil ned
@@ -72,31 +71,31 @@ while True:
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
 
-    if x_kod_ball > x_vin + radius:
-        x_kod_ball = 0 - radius
-    if x_kod_ball < 0 - radius:
-        x_kod_ball = 1280 + radius
-    if y_kod_ball > y_vin + radius:
-        y_kod_ball = 0 - radius
-    if y_kod_ball < 0 - radius:
-        y_kod_ball = 720 + radius
-    
+    if x_kod_ball == x_vin - radius - test:
+        x_kod_ball = x_vin - radius - test
+    if x_kod_ball < 0 - radius + test:
+        x_kod_ball = 0 - radius + test
+    if y_kod_ball > y_vin + radius + test: 
+        y_kod_ball = y_vin + radius + test
+    if y_kod_ball < 0 - radius + test:
+        y_kod_ball = 0 - radius + test
 
     # fargegjennkjennig
    
     farge = bane.get_at((400,400))
     farge_bil = bane.get_at((int(x_kod_ball), int(y_kod_ball)))
     
-    if farge_bil == (255,38,0):
-        antall_ganger += 1
-        if antall_ganger >= 3:
+    if farge_bil == (255,38,0) or farge_bil == (50,124,11):
+        treff += 1
+        if treff == 5:
             x_kod_ball = start_x
             y_kod_ball = start_y
             fart = 0.001
-        print("ani")
-        print(antall_ganger)
+            treff = 0 
+        print("ani", "treff =", treff)
+        
     else:
-        print("tikk")
+        print("tikk", "treff =", treff)
 
 
     tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
