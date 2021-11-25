@@ -36,9 +36,9 @@ n = 5
 Ball_masse1 = 100*n
 ball_masse2 = 1 
 
+
 dx = 1
 dx2 = 1
-
 
 while True:
     for event in pygame.event.get():
@@ -61,8 +61,7 @@ while True:
         dx = -dx
     
     print("xkod1 = ", x_kod_ball, "xkod2 =", x_kod_ball2)
-
-
+    
     stoppe()
     pygame.display.update()
     clock.tick(fps)
