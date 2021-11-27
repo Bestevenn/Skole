@@ -2,6 +2,12 @@ import math
 import pygame
 from random import randint
 from time import sleep
+
+
+bane_til_bilde = input("skriv banen til bildet: ")
+bane_til_bil = input("skriv banen til bil: ")
+print("min mac = 1 ")
+
 pygame.init
 
 
@@ -17,8 +23,12 @@ blue = (0, 0, 128)
 
 
 
-Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
-bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
+if bane_til_bil and bane_til_bilde == 1:
+    Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
+    bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
+else:
+    bilde = pygame.image.load(bane_til_bil)
+    bane = pygame.image.load(bane_til_bilde)
 
 
 start_x = 110 
