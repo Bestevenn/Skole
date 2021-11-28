@@ -23,7 +23,7 @@ blue = (0, 0, 128)
 
 
 
-if bane_til_bil and bane_til_bilde == 1:
+if bane_til_bil and bane_til_bilde == "1":
     Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
     bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
 else:
