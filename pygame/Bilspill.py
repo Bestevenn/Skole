@@ -7,6 +7,7 @@ pygame.font.init()
 
 
 print("skriv 1 på begge for mac")
+print("ikke ha med anførselstegn")
 bane_bilde = input("Skriv banen til bakgrunnen: ")
 bane_bil = input("Skriv banen til bil: ")
 
