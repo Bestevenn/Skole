@@ -6,7 +6,7 @@ pygame.init
 pygame.font.init()
 
 
-print("skriv 1 på beggefor mac")
+print("skriv 1 på begge for mac")
 bane_bilde = input("Skriv banen til bakgrunnen: ")
 bane_bil = input("Skriv banen til bil: ")
 
@@ -25,8 +25,8 @@ if bane_bilde and bane_bil == "1":
     Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
     bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
 else:
-    bane = pygame.image.load(bane_bilde)
-    Bilde = pygame.image.load(bane_bil)
+    bane = pygame.image.load(f"{bane_bilde}")
+    Bilde = pygame.image.load(f"{bane_bil}")
 
 
 
