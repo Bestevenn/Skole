@@ -5,6 +5,7 @@ from time import sleep
 pygame.init
 pygame.font.init()
 
+
 print("skriv 1 på beggefor mac")
 bane_bilde = input("Skriv banen til bakgrunnen: ")
 bane_bil = input("Skriv banen til bil: ")
