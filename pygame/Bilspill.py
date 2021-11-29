@@ -3,7 +3,11 @@ import pygame
 from random import randint
 from time import sleep
 pygame.init
+pygame.font.init()
 
+print("skriv 1 på beggefor mac")
+bane_bilde = input("Skriv banen til bakgrunnen: ")
+bane_bil = input("Skriv banen til bil: ")
 
 pygame.display.set_caption("Bilspill")
 x_vin, y_vin = (1280), (720)
@@ -16,9 +20,13 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 
 
+if bane_bilde and bane_bil == "1":
+    Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
+    bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
+else:
+    bane = pygame.image.load(bane_bilde)
+    Bilde = pygame.image.load(bane_bil)
 
-Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
-bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
 
 
 start_x = 110 
@@ -35,7 +43,15 @@ fart = 0.001
 
 # teller og tekst
 
-treff = 0
+
+poeng_verdi = 0
+font = pygame.font.SysFont('arial', 32)
+x_font = 600
+y_font = 400
+def vis_poeng(x,y):
+    poeng = font.render("Poeng : " + str(poeng_verdi),True,(255,255,255))
+    vindu.blit(poeng,(x, y))
+
 
 def tegnfigur(vindu1, fig, punkt, vinkel):
     rotertbilde = pygame.transform.rotate(fig, vinkel)
@@ -44,7 +60,7 @@ def tegnfigur(vindu1, fig, punkt, vinkel):
     vindu1.blit(rotertbilde, rotertbilde.get_rect(
         center=fig.get_rect(center=(x, y)).center).topleft)
 
-test = 50
+kant = 50
 
 while True:
     for event in pygame.event.get():
@@ -71,33 +87,36 @@ while True:
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
 
-    if x_kod_ball > x_vin - radius - test:
-        x_kod_ball = x_vin - radius - test
-    if x_kod_ball < 0 - radius + test:
-        x_kod_ball = 0 - radius + test
+    if x_kod_ball > x_vin - radius - kant:
+        x_kod_ball = x_vin - radius - kant
+    if x_kod_ball < 0 - radius + kant:
+        x_kod_ball = 0 - radius + kant
     if y_kod_ball > y_vin - radius: 
         y_kod_ball = y_vin - radius 
-    if y_kod_ball < 0 - radius + test:
-        y_kod_ball = 0 - radius + test
+    if y_kod_ball < 0 - radius + kant:
+        y_kod_ball = 0 - radius + kant
 
     # fargegjennkjennig
    
     
     farge_bil = bane.get_at((int(x_kod_ball), int(y_kod_ball)))
     
+
     if farge_bil == (255,38,0) or farge_bil == (50,124,11):
-        treff += 1
-        if treff == 5:
+        poeng_verdi += 1
+        if poeng_verdi >= 1:
+            fart /= 2
+        if poeng_verdi == 5:
             x_kod_ball = start_x
             y_kod_ball = start_y
             fart = 0.001
-            treff = 0 
-        print("ani", "treff =", treff)
+            poeng_verdi = 0 
+        print("ani", "treff =", poeng_verdi)
         
     else:
-        print("tikk", "treff =", treff)
+        print("ikke ani", "treff =", poeng_verdi)
 
-
+    vis_poeng(x_font, y_font)
     tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
     pygame.display.flip()
     clock.tick(fps)
