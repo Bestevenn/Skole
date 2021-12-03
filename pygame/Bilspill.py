@@ -56,10 +56,10 @@ def tegnfigur(vindu1, fig, punkt, vinkel):
 
 #checkpoints
 
-checkpoint_nr1,checkpoint_nr1_kod_x,checkpoint_nr1_kod_y = (234,125,69),(250),(100)
-checkpoint_nr2 = (125,70,234)
-checkpoint_nr3 = (70,179,235)
-checkpoint_nr4 = (125,70,234)
+checkpoint_nr1,checkpoint_nr1_kod_x,checkpoint_nr1_kod_y,checkpoint_nr1_grader = (234,125,69),(250),(100),(90)
+checkpoint_nr2, checkpoint_nr2_kod_x, checkpoint_nr2_kod_y,checkpoint_nr2_grader = (125,70,234),(881),(169),(144)
+checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader = (70,179,235),(1164),(255),(-6)
+checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (125,70,234),(900),(660),(-90)
 status_checkpoint = 0
 
 
@@ -119,9 +119,14 @@ while True:
         status_checkpoint = 1
     elif farge_bil == checkpoint_nr2:
         status_checkpoint = 2
+    elif farge_bil == checkpoint_nr3:
+        status_checkpoint = 3
+    elif farge_bil == checkpoint_nr4:
+        status_checkpoint = 4
 
     
-    print(status_checkpoint,"kordinater=", x_kod_ball, y_kod_ball, "grader =")
+    print(status_checkpoint,"kordinater=", x_kod_ball, y_kod_ball)
+    print("grader=", grader)
     if farge_bil == (69,235,125) or farge_bil == (50,124,11):
         poeng_verdi += 1
         if poeng_verdi >= 1:
@@ -132,9 +137,13 @@ while True:
             if status_checkpoint == 0:
                 start_nytt(start_x, start_y,180)        
             elif status_checkpoint == 1:
-                start_nytt(checkpoint_nr1_kod_x, checkpoint_nr1_kod_y,90)
+                start_nytt(checkpoint_nr1_kod_x, checkpoint_nr1_kod_y,checkpoint_nr1_grader)
             elif status_checkpoint == 2:
-                start_nytt(x_vin/2,y_vin/2,45)
+                start_nytt(checkpoint_nr2_kod_x,checkpoint_nr2_kod_y,checkpoint_nr2_grader)
+            elif status_checkpoint == 3:
+                start_nytt(checkpoint_nr3_kod_x,checkpoint_nr3_kod_y,checkpoint_nr3_grader)
+            elif status_checkpoint == 4:
+                start_nytt(checkpoint_nr4_kod_x,checkpoint_nr4_kod_y,checkpoint_nr4_grader)
         
      
 
