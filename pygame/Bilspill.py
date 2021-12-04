@@ -58,8 +58,8 @@ def tegnfigur(vindu1, fig, punkt, vinkel):
 
 checkpoint_nr1,checkpoint_nr1_kod_x,checkpoint_nr1_kod_y,checkpoint_nr1_grader = (234,125,69),(250),(100),(90)
 checkpoint_nr2, checkpoint_nr2_kod_x, checkpoint_nr2_kod_y,checkpoint_nr2_grader = (125,70,234),(881),(169),(144)
-checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader = (70,179,235),(1164),(255),(-6)
-checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (225,70,236),(620),(660),(-90)
+checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader = (70,179,235),(1099),(582),(-44)
+checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (225,70,236),(577),(650),(-90)
 status_checkpoint = 0
 
 
