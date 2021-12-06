@@ -1,7 +1,6 @@
 import math
 import pygame
 from random import randint
-from time import sleep
 
 
 pygame.init
@@ -22,7 +21,8 @@ kant = 50
 
 
 Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
-bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track3.jpeg")
+bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track3.jpg")
+
 
 
 
@@ -38,6 +38,7 @@ y_kod_ball = start_y
 fart = 0.001
 
 
+
 # teller og tekst
 Antall_treff = 0
 poeng_verdi_system = 0
@@ -50,10 +51,17 @@ def vis_poeng(x,y):
     vindu.blit(poeng,(x, y))
 
 def vis_checkpoint(x,y):
-    poeng = font.render("Du er på checkpoing: " + str(status_checkpoint),True,(checkpoint_farge))
+    poeng = font.render("Du er på checkpoint: " + str(status_checkpoint),True,(checkpoint_farge))
     vindu.blit(poeng,(x, y))
 
+stoppeklokke_minutter = 0
+stoppeklokke_sek = 0
+stoppeklokke_millisekk = 0
+start_stoppeklokke = False
 
+def timer(x,y):
+    poeng = font.render(f"0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}",True,(255,255, 255))
+    vindu.blit(poeng,(x, y))
 
 def tegnfigur(vindu1, fig, punkt, vinkel):
     rotertbilde = pygame.transform.rotate(fig, vinkel)
@@ -61,6 +69,7 @@ def tegnfigur(vindu1, fig, punkt, vinkel):
     y = punkt[1]
     vindu1.blit(rotertbilde, rotertbilde.get_rect(
         center=fig.get_rect(center=(x, y)).center).topleft)
+
 
 
 #checkpoints
@@ -101,22 +110,37 @@ while True:
     key = pygame.key.get_pressed()
     # Test for pil ned
     if key[pygame.K_LEFT]:
-        grader += 1
+        grader += 3
         # Test for pil opp
     elif key[pygame.K_RIGHT]:
-        grader -= 1
+        grader -= 3
     elif key[pygame.K_ESCAPE]:
         pygame.quit()
     elif key[pygame.K_UP]:
-        fart += 0.1
+        fart += 0.08
+        start_stoppeklokke = True
     elif key[pygame.K_DOWN]:
-        fart -= 0.01
-    elif key[pygame.K_SPACE]:
-        
-        start_nytt(start_x, start_y,180)  
+        if stoppeklokke_sek > 2:
+            fart -= 0.08
+    elif key[pygame.K_SPACE]: 
+        start_nytt(start_x, start_y,180)
+        checkpoint_farge = (69,235,125)
+        start_stoppeklokke = False
+        stoppeklokke_sek = 0 
+        stoppeklokke_millisekk = 0
+
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
 
+    # stoppekloppe
+    if start_stoppeklokke == True:
+        stoppeklokke_millisekk += 1
+        if stoppeklokke_millisekk == fps:
+            stoppeklokke_sek += 1
+            stoppeklokke_millisekk = 0
+            if stoppeklokke_sek == 60:
+                stoppeklokke_minutter += 1
+                stoppeklokke_sek = 0
 
     # Gjør det umulig å kjøre utenfor kartet
     if x_kod_ball > x_vin - radius - kant:
@@ -145,13 +169,11 @@ while True:
         status_checkpoint = 4
         checkpoint_farge = checkpoint_nr4
 
-    # Poengsystem med trenger oppdatring
+    # Poengsystem med tregere oppdatring
     if farge_bil == (69,235,125) or farge_bil == (50,124,11):
         if Antall_treff == 0:
             Antall_treff = 1
-
         poeng_verdi_system += 1
-
         if poeng_verdi_system == 50:
             Antall_treff += 1
             poeng_verdi_system = 0
@@ -159,7 +181,7 @@ while True:
             fart /= 1.1112
     
         # sender deg tilbake til checkpointet ditt dersom du får treff = 10
-        if Antall_treff == 10:
+        if Antall_treff == 5:
             if status_checkpoint == 0:
                 start_nytt(start_x, start_y,180)        
             elif status_checkpoint == 1:
@@ -172,11 +194,12 @@ while True:
                 start_nytt(checkpoint_nr4_kod_x,checkpoint_nr4_kod_y,checkpoint_nr4_grader)
         
      
-
+    timer(x_font-100, y_font2+50)
     vis_poeng(x_font, y_font)
     vis_checkpoint(x_font, y_font2)
     tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
-    pygame.display.flip()
     clock.tick(fps)
+    pygame.display.flip()
+    pygame.display.update()
 
 
