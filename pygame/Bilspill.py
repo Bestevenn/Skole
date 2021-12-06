@@ -2,6 +2,8 @@ import math
 import pygame
 from random import randint
 from time import sleep
+
+
 pygame.init
 pygame.font.init()
 
@@ -37,13 +39,20 @@ fart = 0.001
 
 
 # teller og tekst
-poeng_verdi = 0
+Antall_treff = 0
+poeng_verdi_system = 0
 font = pygame.font.SysFont('arial', 32)
 x_font = 600
 y_font = 400
+y_font2 = 400 + 100
 def vis_poeng(x,y):
-    poeng = font.render("Poeng : " + str(poeng_verdi),True,(255,255,255))
+    poeng = font.render("Antall treff: " + str(Antall_treff),True,(255,255,255))
     vindu.blit(poeng,(x, y))
+
+def vis_checkpoint(x,y):
+    poeng = font.render("Du er på checkpoing: " + str(status_checkpoint),True,(checkpoint_farge))
+    vindu.blit(poeng,(x, y))
+
 
 
 def tegnfigur(vindu1, fig, punkt, vinkel):
@@ -62,46 +71,54 @@ checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grade
 checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (225,70,236),(577),(650),(-90)
 status_checkpoint = 0
 
+checkpoint_farge = (69,235,125)
 
-# sarte på nytt
+# Funksjon som sender deg tilbake til checkpointet
 def start_nytt(pros_x, pros_y,antall_grader):
     global x_kod_ball
     global y_kod_ball
     global fart
-    global poeng_verdi
+    global Antall_treff
     global grader
     x_kod_ball = pros_x
     y_kod_ball = pros_y
     fart = 0.001
-    poeng_verdi = 0 
+    Antall_treff = 0 
     grader = antall_grader
 
-
+# lar meg svslutte
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+    
+    
+    # bakgrunn
     vindu.fill(backgrunn)
-
     vindu.blit(bane,(0,0))
-    #pygame.draw.circle(vindu, farge_ball, (x_kod_ball, y_kod_ball), radius, width=0)
+    
+    # Mekanikken til bilen
     key = pygame.key.get_pressed()
     # Test for pil ned
     if key[pygame.K_LEFT]:
-        grader += 2
+        grader += 1
         # Test for pil opp
     elif key[pygame.K_RIGHT]:
-        grader -= 2
+        grader -= 1
     elif key[pygame.K_ESCAPE]:
         pygame.quit()
     elif key[pygame.K_UP]:
         fart += 0.1
     elif key[pygame.K_DOWN]:
-        fart -= 0.1
-
+        fart -= 0.01
+    elif key[pygame.K_SPACE]:
+        
+        start_nytt(start_x, start_y,180)  
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
 
+
+    # Gjør det umulig å kjøre utenfor kartet
     if x_kod_ball > x_vin - radius - kant:
         x_kod_ball = x_vin - radius - kant
     if x_kod_ball < 0 - radius + kant:
@@ -111,29 +128,38 @@ while True:
     if y_kod_ball < 0 - radius + kant:
         y_kod_ball = 0 - radius + kant
     
-    # fargegjennkjennig
-    
+    # fargegjennkjennig ti bilen
     farge_bil = bane.get_at((int(x_kod_ball), int(y_kod_ball)))
     
+    # checkpointsystem i verdensklasse :)
     if farge_bil == checkpoint_nr1:
         status_checkpoint = 1
+        checkpoint_farge = checkpoint_nr1
     elif farge_bil == checkpoint_nr2:
         status_checkpoint = 2
+        checkpoint_farge = checkpoint_nr2
     elif farge_bil == checkpoint_nr3:
         status_checkpoint = 3
+        checkpoint_farge = checkpoint_nr3
     elif farge_bil == checkpoint_nr4:
         status_checkpoint = 4
+        checkpoint_farge = checkpoint_nr4
 
-    
-    print(status_checkpoint,"kordinater=", x_kod_ball, y_kod_ball)
-    print("grader=", grader)
+    # Poengsystem med trenger oppdatring
     if farge_bil == (69,235,125) or farge_bil == (50,124,11):
-        poeng_verdi += 1
-        if poeng_verdi >= 1:
+        if Antall_treff == 0:
+            Antall_treff = 1
+
+        poeng_verdi_system += 1
+
+        if poeng_verdi_system == 50:
+            Antall_treff += 1
+            poeng_verdi_system = 0
+        if Antall_treff >= 1:
             fart /= 1.1112
     
-        
-        if poeng_verdi == 100:
+        # sender deg tilbake til checkpointet ditt dersom du får treff = 10
+        if Antall_treff == 10:
             if status_checkpoint == 0:
                 start_nytt(start_x, start_y,180)        
             elif status_checkpoint == 1:
@@ -148,6 +174,7 @@ while True:
      
 
     vis_poeng(x_font, y_font)
+    vis_checkpoint(x_font, y_font2)
     tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
     pygame.display.flip()
     clock.tick(fps)
