@@ -22,7 +22,7 @@ kant = 50
 
 Bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/racecar.png")
 bane = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track3.jpg")
-
+rent_bilde = pygame.image.load("/Users/martinknutsen/opt/anaconda3/track2.png")
 
 
 
@@ -193,7 +193,7 @@ while True:
             elif status_checkpoint == 4:
                 start_nytt(checkpoint_nr4_kod_x,checkpoint_nr4_kod_y,checkpoint_nr4_grader)
         
-     
+    vindu.blit(rent_bilde,(0,0))
     timer(x_font-100, y_font2+50)
     vis_poeng(x_font, y_font)
     vis_checkpoint(x_font, y_font2)
