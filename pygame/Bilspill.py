@@ -79,8 +79,7 @@ checkpoint_nr2, checkpoint_nr2_kod_x, checkpoint_nr2_kod_y,checkpoint_nr2_grader
 checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader = (70,179,235),(1099),(582),(-44)
 checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (225,70,236),(577),(650),(-90)
 status_checkpoint = 0
-
-checkpoint_farge = (69,235,125)
+checkpoint_farge = (0, 0, 0)
 
 # Funksjon som sender deg tilbake til checkpointet
 def start_nytt(pros_x, pros_y,antall_grader):
@@ -126,8 +125,11 @@ while True:
         start_nytt(start_x, start_y,180)
         checkpoint_farge = (69,235,125)
         start_stoppeklokke = False
+        stoppeklokke_minutter = 0
         stoppeklokke_sek = 0 
         stoppeklokke_millisekk = 0
+        status_checkpoint = 0 
+        checkpoint_farge = (0,0,0)
 
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
@@ -181,7 +183,7 @@ while True:
             fart /= 1.1112
     
         # sender deg tilbake til checkpointet ditt dersom du får treff = 10
-        if Antall_treff == 5:
+        if Antall_treff == 1000:
             if status_checkpoint == 0:
                 start_nytt(start_x, start_y,180)        
             elif status_checkpoint == 1:
@@ -193,10 +195,11 @@ while True:
             elif status_checkpoint == 4:
                 start_nytt(checkpoint_nr4_kod_x,checkpoint_nr4_kod_y,checkpoint_nr4_grader)
         
+    print(x_kod_ball, y_kod_ball)
     vindu.blit(rent_bilde,(0,0))
-    timer(x_font-100, y_font2+50)
-    vis_poeng(x_font, y_font)
-    vis_checkpoint(x_font, y_font2)
+    timer(220, 221)
+    vis_poeng(904, 247)
+    vis_checkpoint(510, 438)
     tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
     clock.tick(fps)
     pygame.display.flip()
