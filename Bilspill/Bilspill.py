@@ -19,19 +19,17 @@ blue = (0, 0, 128)
 kant = 50
 
 
-
-Bilde = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
+# bane til til bildene
+Bil = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
 bane = pygame.image.load("Bilspill/BIlder til bilspill/track3.jpg")
 rent_bilde = pygame.image.load("Bilspill/BIlder til bilspill/track2.png")
 
 
-
-
+# Viktige varible å sette
 start_x = 110 
 start_y = 400
 radius = 50
 dx_aks = 1.0
-R = 2.5
 grader = 180
 x_kod_ball = start_x
 y_kod_ball = start_y
@@ -259,7 +257,7 @@ while True:
     timer(220, 221)
     vis_poeng(904, 247)
     vis_checkpoint(510, 438)
-    tegnfigur(vindu, Bilde, (x_kod_ball, y_kod_ball), grader)
+    tegnfigur(vindu, Bil, (x_kod_ball, y_kod_ball), grader)
     clock.tick(fps)
     pygame.display.flip()
     pygame.display.update()
