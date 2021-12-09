@@ -37,7 +37,11 @@ x_kod_ball = start_x
 y_kod_ball = start_y
 fart = 0.001
 
+# gjør det mulig å stoppe aks
+aks_opp = True
+aks_ned = True
 
+mål = False
 
 # teller og tekst
 Antall_treff = 0
@@ -50,19 +54,42 @@ def vis_poeng(x,y):
     poeng = font.render("Antall treff: " + str(Antall_treff),True,(255,255,255))
     vindu.blit(poeng,(x, y))
 
-def vis_checkpoint(x,y):
-    poeng = font.render("Du er på checkpoint: " + str(status_checkpoint),True,(checkpoint_farge))
-    vindu.blit(poeng,(x, y))
 
+# klokke
 stoppeklokke_minutter = 0
 stoppeklokke_sek = 0
 stoppeklokke_millisekk = 0
 start_stoppeklokke = False
 
-def timer(x,y):
-    poeng = font.render(f"0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}",True,(255,255, 255))
-    vindu.blit(poeng,(x, y))
 
+# klokke tegner 
+def timer(x,y):
+    if mål == False:
+        poeng = font.render(f"0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}",True,(255,255, 255))
+        vindu.blit(poeng,(x, y))
+    if mål == True:
+        poeng = font.render("",True,(255,255, 255))
+        vindu.blit(poeng,(x, y))
+
+
+
+
+def vis_checkpoint(x,y):
+    global mål
+    if mål == False:
+        poeng = font.render("Du er på checkpoint: " + str(status_checkpoint),True,(checkpoint_farge))
+        vindu.blit(poeng,(x, y))
+    if mål == True:
+        poeng = font.render(f" Mål! din tid: 0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}",True,(255,255, 255))
+        vindu.blit(poeng,(x, y))
+
+
+
+
+
+
+
+# bil tegner med rotasjon
 def tegnfigur(vindu1, fig, punkt, vinkel):
     rotertbilde = pygame.transform.rotate(fig, vinkel)
     x = punkt[0]
@@ -78,6 +105,7 @@ checkpoint_nr1,checkpoint_nr1_kod_x,checkpoint_nr1_kod_y,checkpoint_nr1_grader =
 checkpoint_nr2, checkpoint_nr2_kod_x, checkpoint_nr2_kod_y,checkpoint_nr2_grader = (125,70,234),(881),(169),(144)
 checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader = (70,179,235),(1099),(582),(-44)
 checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (225,70,236),(577),(650),(-90)
+checkpoint_mål,checkpoint_mål_kod_x, checkpoint_mål_kod_y, checkpoint_mål_grader = (255,250,0),(110),(398),(90)
 status_checkpoint = 0
 checkpoint_farge = (0, 0, 0)
 
@@ -116,11 +144,28 @@ while True:
     elif key[pygame.K_ESCAPE]:
         pygame.quit()
     elif key[pygame.K_UP]:
-        fart += 0.08
-        start_stoppeklokke = True
+        if aks_opp == True:
+            fart += 0.08
+            start_stoppeklokke = True
     elif key[pygame.K_DOWN]:
-        if stoppeklokke_sek > 2:
-            fart -= 0.08
+        if aks_ned == True:
+            if stoppeklokke_sek > 2:
+                fart -= 0.08
+    elif key[pygame.K_TAB]:
+        # sender deg tilbake til daværende checkpoint
+        if status_checkpoint == 1:
+            x_kod_ball , y_kod_ball, grader = checkpoint_nr1_kod_x, checkpoint_nr1_kod_y ,checkpoint_nr1_grader
+            fart = 0.001
+        elif status_checkpoint == 2:
+            x_kod_ball , y_kod_ball, grader = checkpoint_nr2_kod_x, checkpoint_nr2_kod_y, checkpoint_nr2_grader
+            fart = 0.001
+        elif status_checkpoint == 3:
+            x_kod_ball , y_kod_ball, grader = checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader
+            fart = 0.001
+        elif status_checkpoint == 4:
+            x_kod_ball , y_kod_ball, grader = checkpoint_nr4_kod_x, checkpoint_nr4_kod_y , checkpoint_nr4_grader
+            fart = 0.001
+
     elif key[pygame.K_SPACE]: 
         start_nytt(start_x, start_y,180)
         checkpoint_farge = (69,235,125)
@@ -130,6 +175,9 @@ while True:
         stoppeklokke_millisekk = 0
         status_checkpoint = 0 
         checkpoint_farge = (0,0,0)
+        aks_opp = True
+        aks_ned = True
+        mål = False
 
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
@@ -137,7 +185,7 @@ while True:
     # stoppekloppe
     if start_stoppeklokke == True:
         stoppeklokke_millisekk += 1
-        if stoppeklokke_millisekk == fps:
+        if stoppeklokke_millisekk == 60:
             stoppeklokke_sek += 1
             stoppeklokke_millisekk = 0
             if stoppeklokke_sek == 60:
@@ -163,13 +211,22 @@ while True:
         checkpoint_farge = checkpoint_nr1
     elif farge_bil == checkpoint_nr2:
         status_checkpoint = 2
-        checkpoint_farge = checkpoint_nr2
+        checkpoint_farge = (255,250,0)
     elif farge_bil == checkpoint_nr3:
         status_checkpoint = 3
         checkpoint_farge = checkpoint_nr3
     elif farge_bil == checkpoint_nr4:
         status_checkpoint = 4
         checkpoint_farge = checkpoint_nr4
+    elif farge_bil == checkpoint_mål:
+        if stoppeklokke_sek > 2:
+            start_stoppeklokke = False
+            aks_opp = False
+            aks_ned = False
+            fart =  0
+            mål = True
+
+
 
     # Poengsystem med tregere oppdatring
     if farge_bil == (69,235,125) or farge_bil == (50,124,11):
@@ -194,6 +251,8 @@ while True:
                 start_nytt(checkpoint_nr3_kod_x,checkpoint_nr3_kod_y,checkpoint_nr3_grader)
             elif status_checkpoint == 4:
                 start_nytt(checkpoint_nr4_kod_x,checkpoint_nr4_kod_y,checkpoint_nr4_grader)
+            elif status_checkpoint == 5:
+                print
         
     print(x_kod_ball, y_kod_ball)
     vindu.blit(rent_bilde,(0,0))
