@@ -1,7 +1,4 @@
-
-test = "kuk"
-
-
-f = open("Bilspill/Lederbords.txt", "a")
-f.write(f"{test}\n")
-f.close
+from datetime import *
+now = datetime.now()
+current_time = now.strftime("%H:%M:%S")
+print("Current Time is :", current_time)

@@ -1,8 +1,8 @@
 import math
 import pygame
 from random import randint
-import datetime 
-import os
+import datetime
+import time
 
 
 
@@ -93,12 +93,14 @@ def vis_checkpoint(x,y):
 
 
 # leaderbord 
+t = time.localtime()
+tid_nå = time.strftime("%H:%M:%S", t)
 tid_spiller  = 0 
 Antall_forsøk = 0 
 dato_idag = datetime.date.today()
 def leaderboard(): 
     global tid_spiller
-    tid_spiller = (f"Dato: {dato_idag} : Forsøk {Antall_forsøk}: {navn_spiller} sin tid ble: 0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}")
+    tid_spiller = (f"Dato: {dato_idag} {tid_nå} : Forsøk {Antall_forsøk}: {navn_spiller} sin tid ble: 0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}")
     f = open("Bilspill/Lederbords.txt", "a")
     f.write(f"{tid_spiller}\n")
     f.close
