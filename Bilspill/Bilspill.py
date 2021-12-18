@@ -1,6 +1,9 @@
 import math
 import pygame
 from random import randint
+import datetime 
+import os
+
 
 
 pygame.init
@@ -18,6 +21,7 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 kant = 50
 
+navn_spiller = input("Skriv navnet ditt: ")
 
 # bane til til bildene
 Bil = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
@@ -62,6 +66,7 @@ start_stoppeklokke = False
 
 # klokke tegner 
 def timer(x,y):
+    global tid_spiller
     if mål == False:
         poeng = font.render(f"0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}",True,(255,255, 255))
         vindu.blit(poeng,(x, y))
@@ -71,6 +76,7 @@ def timer(x,y):
 
 
 
+# funksjon for å vise fart 
 def vis_fart(x,y):
     poeng = font.render(f"{round(fart*10,2)}km/h",True,(255,255, 255))
     vindu.blit(poeng,(x, y))
@@ -86,9 +92,16 @@ def vis_checkpoint(x,y):
         vindu.blit(poeng,(x, y))
 
 
-
-
-
+# leaderbord 
+tid_spiller  = 0 
+Antall_forsøk = 0 
+dato_idag = datetime.date.today()
+def leaderboard(): 
+    global tid_spiller
+    tid_spiller = (f"Dato: {dato_idag} : Forsøk {Antall_forsøk}: {navn_spiller} sin tid ble: 0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}")
+    f = open("Bilspill/Lederbords.txt", "a")
+    f.write(f"{tid_spiller}\n")
+    f.close
 
 
 
@@ -99,6 +112,7 @@ def tegnfigur(vindu1, fig, punkt, vinkel):
     y = punkt[1]
     vindu1.blit(rotertbilde, rotertbilde.get_rect(
         center=fig.get_rect(center=(x, y)).center).topleft)
+
 
 
 
@@ -124,6 +138,10 @@ def start_nytt(pros_x, pros_y,antall_grader):
     fart = 0.001
     Antall_treff = 0 
     grader = antall_grader
+
+
+
+
 
 # lar meg svslutte
 while True:
@@ -229,6 +247,10 @@ while True:
             fart =  0
             mål = True
             status_checkpoint = 0
+            x_kod_ball = start_x
+            y_kod_ball = start_y
+            Antall_forsøk += 1
+            leaderboard()
 
 
 
@@ -266,7 +288,8 @@ while True:
     vis_fart(1145, 30)
     tegnfigur(vindu, Bil, (x_kod_ball, y_kod_ball), grader)
     clock.tick(fps)
+    
     pygame.display.flip()
     pygame.display.update()
-
+ 
 

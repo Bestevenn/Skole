@@ -3,6 +3,7 @@ import time
 import os
 from functools import reduce
 from datetime import date
+
 from sys import platform
 
 
