@@ -1,3 +1,5 @@
 Leaderboard:
 
 Dato: 2021-12-18 14:12:32 : ForsÃ¸k 1: martin sin tid ble: 00:10:33
+Dato: 2021-12-18 18:05:37 : Forsøk 1: Test sin tid ble: 00:12:49
+Dato: 2021-12-18 18:05:37 : Forsøk 2: Test sin tid ble: 00:10:15
