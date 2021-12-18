@@ -21,7 +21,7 @@ kant = 50
 
 # bane til til bildene
 Bil = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
-bane = pygame.image.load("Bilspill/BIlder til bilspill/track3.jpg")
+bane = pygame.image.load("Bilspill/BIlder til bilspill/track3_2.jpg")
 rent_bilde = pygame.image.load("Bilspill/BIlder til bilspill/track2.png")
 
 
@@ -72,7 +72,7 @@ def timer(x,y):
 
 
 def vis_fart(x,y):
-    poeng = font.render(f"{round(fart,2)}km/h",True,(255,255, 255))
+    poeng = font.render(f"{round(fart*10,2)}km/h",True,(255,255, 255))
     vindu.blit(poeng,(x, y))
 
 
@@ -104,10 +104,10 @@ def tegnfigur(vindu1, fig, punkt, vinkel):
 
 #checkpoints
 
-checkpoint_nr1,checkpoint_nr1_kod_x,checkpoint_nr1_kod_y,checkpoint_nr1_grader = (234,125,69),(250),(100),(90)
+checkpoint_nr1,checkpoint_nr1_kod_x,checkpoint_nr1_kod_y,checkpoint_nr1_grader = (236,125,70),(250),(100),(90)
 checkpoint_nr2, checkpoint_nr2_kod_x, checkpoint_nr2_kod_y,checkpoint_nr2_grader = (125,70,234),(881),(169),(144)
 checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader = (70,179,235),(1099),(582),(-44)
-checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (225,70,236),(577),(650),(-90)
+checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (229,68,236),(577),(650),(-90)
 checkpoint_mål,checkpoint_mål_kod_x, checkpoint_mål_kod_y, checkpoint_mål_grader = (255,250,0),(110),(398),(90)
 status_checkpoint = 0
 checkpoint_farge = (0, 0, 0)
@@ -228,6 +228,7 @@ while True:
             aks_ned = False
             fart =  0
             mål = True
+            status_checkpoint = 0
 
 
 
@@ -258,7 +259,7 @@ while True:
                 print
         
     print(x_kod_ball, y_kod_ball)
-    vindu.blit(rent_bilde,(0,0))
+    #vindu.blit(rent_bilde,(0,0))
     timer(220, 221)
     vis_poeng(904, 247)
     vis_checkpoint(510, 438)
