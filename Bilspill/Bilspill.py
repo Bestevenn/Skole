@@ -108,7 +108,7 @@ checkpoint_nr1,checkpoint_nr1_kod_x,checkpoint_nr1_kod_y,checkpoint_nr1_grader =
 checkpoint_nr2, checkpoint_nr2_kod_x, checkpoint_nr2_kod_y,checkpoint_nr2_grader = (125,70,234),(881),(169),(144)
 checkpoint_nr3, checkpoint_nr3_kod_x, checkpoint_nr3_kod_y, checkpoint_nr3_grader = (70,179,235),(1099),(582),(-44)
 checkpoint_nr4,checkpoint_nr4_kod_x, checkpoint_nr4_kod_y, checkpoint_nr4_grader = (229,68,236),(577),(650),(-90)
-checkpoint_mål,checkpoint_mål_kod_x, checkpoint_mål_kod_y, checkpoint_mål_grader = (255,250,0),(110),(398),(90)
+checkpoint_mål,checkpoint_mål_kod_x, checkpoint_mål_kod_y, checkpoint_mål_grader = (255,252,1),(110),(398),(90)
 status_checkpoint = 0
 checkpoint_farge = (0, 0, 0)
 
@@ -244,7 +244,7 @@ while True:
             fart /= 1.1112
     
         # sender deg tilbake til checkpointet ditt dersom du får treff = 10
-        if Antall_treff == 1000:
+        if Antall_treff == 3:
             if status_checkpoint == 0:
                 start_nytt(start_x, start_y,180)        
             elif status_checkpoint == 1:
@@ -259,7 +259,7 @@ while True:
                 print
         
     print(x_kod_ball, y_kod_ball)
-    #vindu.blit(rent_bilde,(0,0))
+    vindu.blit(rent_bilde,(0,0))
     timer(220, 221)
     vis_poeng(904, 247)
     vis_checkpoint(510, 438)
