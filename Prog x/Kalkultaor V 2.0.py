@@ -34,8 +34,6 @@ def skjekke_os():
         os.system("cls")
     elif platform == "linux":
         os.system("clear")
-    else:
-        print()
 
 Alle_svar = []  #lager en tom liste som vi kan legge svarene inni
     

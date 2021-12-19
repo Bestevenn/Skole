@@ -1,12 +1,13 @@
-import math
-import pygame
-from random import randint
 import datetime
+import math
 import time
 # meldingsbox
 import tkinter as tk
-from tkinter import simpledialog
+from random import randint
 
+from sys import platform
+from tkinter import simpledialog
+import pygame
 
 pygame.init
 pygame.font.init()
@@ -32,9 +33,9 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 kant = 50
 
-try:
+if platform == "win32":
     navn_spiller = meldingsbox("Hva er ditt navn?", "Navn_spiller")
-except:
+elif platform == "darwin":
     navn_spiller = input("Skriv navnet ditt: ")
 
 # bane til til bildene
@@ -57,7 +58,10 @@ fart = 0.001
 aks_opp = True
 aks_ned = True
 
+
+# endrer tenksten ved mål
 mål = False
+mål_tekst = False 
 
 # teller og tekst
 Antall_treff = 0
@@ -82,20 +86,32 @@ start_stoppeklokke = False
 def timer(x,y):
     global tid_spiller
     if mål == False:
-        poeng = font.render(f"0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}",True,(255,255, 255))
+        poeng = font.render(f"0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}",True,(255,255,255))
         vindu.blit(poeng,(x, y))
     if mål == True:
-        poeng = font.render("",True,(255,255, 255))
+        poeng = font.render("",True,(255,255,255))
         vindu.blit(poeng,(x, y))
 
 
 
 # funksjon for å vise fart 
 def vis_fart(x,y):
-    poeng = font.render(f"{round(fart*10,2)}km/h",True,(255,255, 255))
+    poeng = font.render(f"{round(fart*10,2)}km/h",True,(255,255,255))
     vindu.blit(poeng,(x, y))
 
 
+
+# teksten som sier hva du skal gjøre for å starte på nytt
+def start_på_nytt_tekst(x,y):
+    if mål_tekst == True:
+        poeng = font.render("Trykk på space for å stare på nytt",True,(255,255,255))
+        vindu.blit(poeng,(x, y))
+    elif mål_tekst == False:
+        poeng = font.render("",True,(255,255,255))
+        vindu.blit(poeng,(x, y))
+
+
+# tekteen som omhandler checkpointene
 def vis_checkpoint(x,y):
     global mål
     if mål == False:
@@ -215,6 +231,7 @@ while True:
         aks_opp = True
         aks_ned = True
         mål = False
+        mål = False
 
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
@@ -266,6 +283,7 @@ while True:
             x_kod_ball = start_x
             y_kod_ball = start_y
             Antall_forsøk += 1
+            mål_tekst = True
             leaderboard()
 
 
@@ -295,13 +313,17 @@ while True:
                 start_nytt(checkpoint_nr4_kod_x,checkpoint_nr4_kod_y,checkpoint_nr4_grader)
             elif status_checkpoint == 5:
                 print
-        
-    print(x_kod_ball, y_kod_ball)
+    
+
+    print(x_kod_ball, y_kod_ball) 
+    
+    # viser ting på i spillet 
     vindu.blit(rent_bilde,(0,0))
     timer(220, 221)
     vis_poeng(904, 247)
-    vis_checkpoint(510, 438)
+    vis_checkpoint(510, 468)
     vis_fart(1145, 30)
+    start_på_nytt_tekst(410,395)
     tegnfigur(vindu, Bil, (x_kod_ball, y_kod_ball), grader)
     clock.tick(fps)
     
