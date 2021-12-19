@@ -32,7 +32,10 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 kant = 50
 
-navn_spiller = meldingsbox("Hva er ditt navn?", "Navn_spiller")
+try:
+    navn_spiller = meldingsbox("Hva er ditt navn?", "Navn_spiller")
+except:
+    navn_spiller = input("Skriv navnet ditt: ")
 
 # bane til til bildene
 Bil = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
