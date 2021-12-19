@@ -13,3 +13,9 @@ Dato: 2021-12-18 : ForsÃ¸k 1: Martin sin tid ble: 00:6:17
 Dato: 2021-12-18 : Forsøk 1: martin sin tid ble: 00:11:22
 >>>>>>> Stashed changes
 Dato: 2021-12-18 18:20:23 : Forsøk 1: martin sin tid ble: 00:13:54
+Dato: 2021-12-18 20:46:17 : Forsøk 1: Bk sin tid ble: 00:21:2
+Dato: 2021-12-18 20:46:17 : Forsøk 2: Bk sin tid ble: 00:23:35
+Dato: 2021-12-18 20:46:17 : Forsøk 3: Bk sin tid ble: 00:14:28
+Dato: 2021-12-18 20:46:17 : Forsøk 4: Bk sin tid ble: 00:9:49
+Dato: 2021-12-19 11:53:59 : Forsøk 1: Martin_Test sin tid ble: 00:11:41
+Dato: 2021-12-19 11:53:59 : Forsøk 2: Martin_Test sin tid ble: 00:22:14

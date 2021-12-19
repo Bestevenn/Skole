@@ -3,11 +3,22 @@ import pygame
 from random import randint
 import datetime
 import time
-
+# meldingsbox
+import tkinter as tk
+from tkinter import simpledialog
 
 
 pygame.init
 pygame.font.init()
+
+
+def meldingsbox(input,navn_box):
+    ROOT = tk.Tk()
+    ROOT.withdraw()
+    USER_INP = simpledialog.askstring(title=f"{navn_box}", prompt=f"{input}")
+    return USER_INP
+
+
 
 
 pygame.display.set_caption("Bilspill")
@@ -21,7 +32,7 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 kant = 50
 
-navn_spiller = input("Skriv navnet ditt: ")
+navn_spiller = meldingsbox("Hva er ditt navn?", "Navn_spiller")
 
 # bane til til bildene
 Bil = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
