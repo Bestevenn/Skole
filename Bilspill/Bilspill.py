@@ -198,7 +198,7 @@ while True:
         pygame.quit()
     elif key[pygame.K_UP]:
         if aks_opp == True:
-            fart += 0.08
+            fart += 0.1
             start_stoppeklokke = True
     elif key[pygame.K_DOWN]:
         if aks_ned == True:
@@ -232,7 +232,9 @@ while True:
         aks_ned = True
         mål = False
         mål = False
+        mål_tekst = False
 
+    # regner ut rotasjon til bil
     x_kod_ball += fart*math.sin(grader*math.pi/180)
     y_kod_ball += fart*math.cos(grader*math.pi/180)
 
@@ -318,7 +320,7 @@ while True:
     print(x_kod_ball, y_kod_ball) 
     
     # viser ting på i spillet 
-    vindu.blit(rent_bilde,(0,0))
+    #vindu.blit(rent_bilde,(0,0))
     timer(220, 221)
     vis_poeng(904, 247)
     vis_checkpoint(510, 468)
