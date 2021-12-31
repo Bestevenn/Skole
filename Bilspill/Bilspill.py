@@ -127,10 +127,15 @@ t = time.localtime()
 tid_nå = time.strftime("%H:%M:%S", t)
 tid_spiller  = 0 
 Antall_forsøk = 0 
+tid_i_sek = []
 dato_idag = datetime.date.today()
 def leaderboard(): 
+    global total_tid_i_sek
     global tid_spiller
+    global bare_tid_spiller
     tid_spiller = (f"Dato: {dato_idag} {tid_nå} : Forsøk {Antall_forsøk}: {navn_spiller} sin tid ble: 0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}")
+    total_tid_i_sek = (stoppeklokke_minutter*(60)) + (stoppeklokke_sek) + (stoppeklokke_millisekk/(100))
+    tid_i_sek.append(tid_spiller)
     f = open("Bilspill/Lederbords.txt", "a")
     f.write(f"{tid_spiller}\n")
     f.close
@@ -205,6 +210,8 @@ while True:
             if stoppeklokke_sek > 2:
                 fart -= 0.08
     elif key[pygame.K_TAB]:
+        tid_i_sek.sort(reverse=False)
+
         # sender deg tilbake til daværende checkpoint
         if status_checkpoint == 1:
             x_kod_ball , y_kod_ball, grader = checkpoint_nr1_kod_x, checkpoint_nr1_kod_y ,checkpoint_nr1_grader
@@ -317,10 +324,11 @@ while True:
                 print
     
 
-    print(x_kod_ball, y_kod_ball) 
-    
+    #print(x_kod_ball, y_kod_ball) 
+    print(tid_i_sek)
+
     # viser ting på i spillet 
-    #vindu.blit(rent_bilde,(0,0))
+    vindu.blit(rent_bilde,(0,0))
     timer(220, 221)
     vis_poeng(904, 247)
     vis_checkpoint(510, 468)
