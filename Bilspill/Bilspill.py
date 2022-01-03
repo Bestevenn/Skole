@@ -4,7 +4,6 @@ import time
 # meldingsbox
 import tkinter as tk
 from random import randint
-
 from sys import platform
 from tkinter import simpledialog
 import pygame
