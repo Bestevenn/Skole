@@ -38,9 +38,9 @@ elif platform == "darwin":
     navn_spiller = input("Skriv navnet ditt: ")
 
 # bane til til bildene
-Bil = pygame.image.load("/Users/martinknutsen/Documents/GitHub/Skole/Bilspill/BIlder til bilspill/racecar.png")
-bane = pygame.image.load("/Users/martinknutsen/Documents/GitHub/Skole/Bilspill/BIlder til bilspill/track3_2.jpg")
-rent_bilde = pygame.image.load("/Users/martinknutsen/Documents/GitHub/Skole/Bilspill/BIlder til bilspill/track2.png")
+Bil = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
+bane = pygame.image.load("Bilspill/BIlder til bilspill/track3_2.jpg")
+rent_bilde = pygame.image.load("Bilspill/BIlder til bilspill/track2.png")
 
 
 # Viktige varible å sette 
