@@ -1,5 +1,8 @@
 
+import time
 
-for n in range(100):
-    if n % 2 == 1:
-        print(n, end=', ')    
+n = 1
+while True:
+    time.sleep(0.2)
+    print(f"tall nr:{n} er {n**3}")
+    n += 1

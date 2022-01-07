@@ -1,11 +1,5 @@
 
 
-Status bilspill:
+Trykk Space for å starte på begynnelsen
 
-Her er en ganske grei prototype av bilspillet. 
-Har fortsatt litt å jobbe med når det kommer på sensetiviteten til checkpointene, sånn det er nå så må man enten kjøre veldig sakte eller være heldig for at checkpointene skal treffe.
-Skal også jobbe litt med plasering til teksen.
-
-Martin Elde Knutsen
-
-
+og tab for å starte med checkpointet

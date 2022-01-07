@@ -38,12 +38,12 @@ elif platform == "darwin":
     navn_spiller = input("Skriv navnet ditt: ")
 
 # bane til til bildene
-Bil = pygame.image.load("Bilspill/BIlder til bilspill/racecar.png")
-bane = pygame.image.load("Bilspill/BIlder til bilspill/track3_2.jpg")
-rent_bilde = pygame.image.load("Bilspill/BIlder til bilspill/track2.png")
+Bil = pygame.image.load("/Users/martinknutsen/Documents/GitHub/Skole/Bilspill/BIlder til bilspill/racecar.png")
+bane = pygame.image.load("/Users/martinknutsen/Documents/GitHub/Skole/Bilspill/BIlder til bilspill/track3_2.jpg")
+rent_bilde = pygame.image.load("/Users/martinknutsen/Documents/GitHub/Skole/Bilspill/BIlder til bilspill/track2.png")
 
 
-# Viktige varible å sette
+# Viktige varible å sette 
 start_x = 110 
 start_y = 400
 radius = 50
@@ -126,7 +126,6 @@ t = time.localtime()
 tid_nå = time.strftime("%H:%M:%S", t)
 tid_spiller  = 0 
 Antall_forsøk = 0 
-tid_i_sek = []
 dato_idag = datetime.date.today()
 def leaderboard(): 
     global total_tid_i_sek
@@ -134,7 +133,6 @@ def leaderboard():
     global bare_tid_spiller
     tid_spiller = (f"Dato: {dato_idag} {tid_nå} : Forsøk {Antall_forsøk}: {navn_spiller} sin tid ble: 0{stoppeklokke_minutter}:{stoppeklokke_sek}:{stoppeklokke_millisekk}")
     total_tid_i_sek = (stoppeklokke_minutter*(60)) + (stoppeklokke_sek) + (stoppeklokke_millisekk/(100))
-    tid_i_sek.append(tid_spiller)
     f = open("Bilspill/Lederbords.txt", "a")
     f.write(f"{tid_spiller}\n")
     f.close
@@ -324,7 +322,7 @@ while True:
     
 
     #print(x_kod_ball, y_kod_ball) 
-    print(tid_i_sek)
+    #print(tid_i_sek)
 
     # viser ting på i spillet 
     vindu.blit(rent_bilde,(0,0))
